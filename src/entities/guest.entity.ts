@@ -1,9 +1,12 @@
+import { Room } from './room.entity'
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
+    OneToOne,
+    JoinClolumn
 } from 'typeorm'
 
 @Entity('guest')
@@ -28,4 +31,8 @@ export class Guest {
 
     @UpdateDateColumn({name: 'updated_at'})
     updatedAt: Date
+
+    @OneToOne(() => Room, {nullable: true, default: null})
+    @JoinClolumn()
+    room: Room
 }
