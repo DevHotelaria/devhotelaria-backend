@@ -23,6 +23,10 @@ const loginSessionService = async ({name, password}: ILoginSession) => {
         throw new AppError('Invalid email or password', 403);
     }
 
+    if(user.is_connected) {
+        throw new AppError('This user is already logged in', 401);
+    }
+
     const token = jwt.sign({id: user.id, type_user: user.type_user}, process.env.SECRET_KEY as string, {
         expriresIn: '24h'
     });
