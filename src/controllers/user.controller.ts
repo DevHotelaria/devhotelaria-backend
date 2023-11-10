@@ -27,3 +27,9 @@ export const profileUserController = async (req: Request, res: Response) => {
 
     return res.status(200).json(instanceToPlain(user));
 };
+
+export const listUserController = async (req: Request, res: Response) => {
+    const users = await listUserService();
+
+    return res.status(200).json(instanceToPlain(users));
+};
