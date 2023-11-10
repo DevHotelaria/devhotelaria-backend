@@ -33,3 +33,11 @@ export const listUserController = async (req: Request, res: Response) => {
 
     return res.status(200).json(instanceToPlain(users));
 };
+
+export const deleteUserController = async (req: Request, res: Response) => {
+    const id = req.params.id;
+
+    await deleteUserService(id);
+
+    return res.send(204);
+};
