@@ -19,3 +19,11 @@ export const updateUserController = async (req: Request, res: Response) => {
 
     return res.status(200).json(instanceToPlain(updatedUser));
 };
+
+export const profileUserControler = async (req: Request, res: Response) => {
+    const id = req.user.id;
+
+    const user = await profileUserControler(id);
+
+    return res.status(200).json(instanceToPlain(user));
+};
