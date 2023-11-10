@@ -7,8 +7,9 @@ import { IUserRequest } from '../../interfaces/user.interface';
 const createUserService = async({name, type_user, password}: IUserRequest) => {
     const userRepository = AppDataSource.getRepository(User);
     
-    const users = await userRepository.find();
-    const userAlreadyExists = users.find((user) => user.name === name);
+    const userAlreadyExists = await userRepository.findOneBy({
+        name
+    });
     if(userAlreadyExists){
         throw new AppError('User already exists')
     }
