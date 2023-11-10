@@ -1,5 +1,10 @@
 import { Request, Response } from 'express';
 import { instanceToPlain } from 'class-transformer';
+import createUserService from '../service/users/createUser.service';
+import updateUserService from '../service/users/updateUser.service';
+import profileUserService from '../service/users/profileUser.service';
+import listUserService from '../service/users/listUser.service';
+import deleteUserService from '../service/users/deleteUser.service';
 
 export const createUserController = async (req: Request, res: Response) => {
     const { name, type_user, password} = req.body;
