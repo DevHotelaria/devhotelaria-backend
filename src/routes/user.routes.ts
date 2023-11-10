@@ -3,11 +3,12 @@ import {
     createUserController,
     updateUserController
 } from '../controllers/user.controller';
-import verifyAuthAdminMiddleware from '../middleware/verifyAuthAdmin.middleware';
+import verifyAuthMiddleware from '../middleware/verifyAuth.middleware';
+import verifyAdmin from '../middleware/verifyAdmin.middleware';
 
 const userRoutes = Router();
 
-userRoutes.post('', verifyAuthAdminMiddleware, createUserController);
-userRoutes.patch('', verifyAuthAdminMiddleware, updateUserController);
+userRoutes.post('', verifyAuthMiddleware, verifyAdmin, createUserController);
+userRoutes.patch('/:id', verifyAuthMiddleware, verifyAdmin, updateUserController);
 
 export default userRoutes;

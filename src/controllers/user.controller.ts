@@ -13,7 +13,7 @@ export const createUserController = async (req: Request, res: Response) => {
 
 export const updateUserController = async (req: Request, res: Response) => {
     const { name, type_user, password } = req.body;
-    const idUser = req.user.id;
+    const idUser = req.params.id;
 
     const updatedUser = await updateUserService({name, type_user, password}, idUser);
 
