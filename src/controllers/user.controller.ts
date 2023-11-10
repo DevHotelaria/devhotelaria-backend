@@ -9,4 +9,13 @@ export const createUserController = async (req: Request, res: Response) => {
     });
 
     return res.status(201).json(instanceToPlain(userCreated));
-}
+};
+
+export const updateUserController = async (req: Request, res: Response) => {
+    const { name, type_user, password } = req.body;
+    const idUser = req.user.id;
+
+    const updatedUser = await updateUserService({name, type_user, password}, idUser);
+
+    return res.status(200).json(instanceToPlain(updatedUser));
+};
