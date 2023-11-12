@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import createRoomService from "../services/room/createRoom.service";
 import updateRoomService from "../services/room/updateRoom.service";
 import listRoomService from "../services/room/listRoom.service";
+import deleteRoomService from "../services/room/deleteRoom.service";
 
 export const createRoomController = async (req: Request, res: Response) => {
     const { numberRoom } = req.body;
@@ -26,4 +27,12 @@ export const listRoomController = async (req: Request, res: Response) => {
     const rooms = await listRoomService();
 
     return res.status(200).json(rooms);
+}
+
+export const deleteRoomController = async (req: Request, res: Response) => {
+    const id = req.params.id;
+
+    await deleteRoomService(id);
+
+    return res.send(204);
 }
