@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import createRoomService from "../services/room/createRoom.service";
 import updateRoomService from "../services/room/updateRoom.service";
+import listRoomService from "../services/room/listRoom.service";
 
 export const createRoomController = async (req: Request, res: Response) => {
     const { numberRoom } = req.body;
@@ -19,4 +20,10 @@ export const UpdateRoomController = async (req: Request, res: Response) => {
     const roomUpdated = await updateRoomService({numberRoom, status}, id);
 
     return res.status(200).json(roomUpdated);
+}
+
+export const listRoomController = async (req: Request, res: Response) => {
+    const rooms = await listRoomService();
+
+    return res.status(200).json(rooms);
 }
