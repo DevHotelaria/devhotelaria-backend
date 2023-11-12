@@ -3,9 +3,9 @@ import checkinManagerService from "../services/manager/checkinManager.service";
 import checkoutManagerService from "../services/manager/checkoutManager.service";
 
 export const checkinManagerController = async (req: Request, res: Response) => {
-    const { guest_id, room_id } = req.body;
+    const { guest_id, room_id, daily_rate, accommodation_days } = req.body;
 
-    const managerCreated = await checkinManagerService({guest_id, room_id});
+    const managerCreated = await checkinManagerService({guest_id, room_id, daily_rate, accommodation_days});
 
     return res.status(201).json(managerCreated);
 }

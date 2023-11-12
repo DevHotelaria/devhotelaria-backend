@@ -21,6 +21,9 @@ export class Room {
     @Column()
     status: string
 
+    @Column()
+    description: string
+
     @OneToOne(() => Guest, (guest) => guest.room)
     @JoinColumn()
     ocupation_guest: Guest

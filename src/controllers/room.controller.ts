@@ -5,9 +5,9 @@ import listRoomService from "../services/room/listRoom.service";
 import deleteRoomService from "../services/room/deleteRoom.service";
 
 export const createRoomController = async (req: Request, res: Response) => {
-    const { numberRoom } = req.body;
+    const { numberRoom, description } = req.body;
 
-    const roomCreated = await createRoomService(numberRoom);
+    const roomCreated = await createRoomService({numberRoom, description});
 
     console.log(roomCreated)
 
@@ -15,10 +15,10 @@ export const createRoomController = async (req: Request, res: Response) => {
 };
 
 export const UpdateRoomController = async (req: Request, res: Response) => {
-    const { numberRoom, status } = req.body;
+    const { numberRoom, status, description } = req.body;
     const id = req.params.id
 
-    const roomUpdated = await updateRoomService({numberRoom, status}, id);
+    const roomUpdated = await updateRoomService({numberRoom, status, description}, id);
 
     return res.status(200).json(roomUpdated);
 }

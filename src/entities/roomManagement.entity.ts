@@ -25,6 +25,21 @@ export class RoomManagement {
     @Column()
     eletronic_key: string
 
+    @Column({nullable: true, default: null})
+    privileges: string
+
+    @Column({default: 0})
+    discount: number
+
+    @Column()
+    daily_rate: number
+
+    @Column()
+    accommodation_days: number
+
+    @Column({default: false})
+    is_paid: boolean
+
     @CreateDateColumn({name: 'created_at'})
     createdAt: Date
 

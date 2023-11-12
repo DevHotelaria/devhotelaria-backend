@@ -6,7 +6,7 @@ import { RoomManagement } from "../../entities/roomManagement.entity";
 import { AppError } from "../../errors/appError";
 import { ICheckinRequest } from "../../interfaces/manager.interface";
 
-const checkinManagerService = async ({guest_id, room_id}: ICheckinRequest) => {
+const checkinManagerService = async ({guest_id, room_id, daily_rate, accommodation_days}: ICheckinRequest) => {
     const managerRepository = AppDataSource.getRepository(RoomManagement);
     const guestRepository = AppDataSource.getRepository(Guest);
     const roomRepository = AppDataSource.getRepository(Room);
@@ -38,6 +38,17 @@ const checkinManagerService = async ({guest_id, room_id}: ICheckinRequest) => {
         throw new AppError('This guest is already in a room', 401);
     }
 
+    const manager = managerRepository.create({
+        checkin: new Date(),
+        eletronic_key: uuidv4(),
+        room: findRoom,
+        guest: findGuest,
+        daily_rate: daily_rate,
+        accommodation_days: accommodation_days,
+    });
+
+    await managerRepository.save(manager);
+
     await guestRepository.update(guest_id, {
         room: findRoom
     });
@@ -46,15 +57,6 @@ const checkinManagerService = async ({guest_id, room_id}: ICheckinRequest) => {
         status: 'ocupado',
         ocupation_guest: findGuest
     });
-
-    const manager = managerRepository.create({
-        checkin: new Date(),
-        eletronic_key: uuidv4(),
-        room: findRoom,
-        guest: findGuest
-    });
-
-    await managerRepository.save(manager);
 
     return manager;
 };

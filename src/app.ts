@@ -8,6 +8,7 @@ import handleErrorMiddleware from './middlewares/handleError.middleware';
 import roomRoutes from './routes/room.routes';
 import guestRoutes from './routes/guest.routes';
 import managerRoutes from './routes/manager.routes';
+import paymentRoutes from './routes/payment.route';
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,7 @@ app.use('/session', sessionRoutes);
 app.use('/room', roomRoutes);
 app.use('/guest', guestRoutes);
 app.use('/manager', managerRoutes);
+app.use('/payment', paymentRoutes);
 
 app.use(handleErrorMiddleware);
 
