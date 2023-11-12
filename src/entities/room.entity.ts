@@ -14,7 +14,7 @@ export class Room {
     id: string
 
     @Column({name: "number_room", unique: true})
-    numberRoom: number
+    numberRoom: string
 
     @Column()
     status: string
