@@ -6,8 +6,11 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     OneToOne,
-    JoinClolumn
+    JoinColumn,
+    OneToMany
 } from 'typeorm'
+import { RoomManagement } from './roomManagement.entity'
+import { Booking } from './booking.entity'
 
 @Entity('guest')
 export class Guest {
@@ -32,7 +35,15 @@ export class Guest {
     @UpdateDateColumn({name: 'updated_at'})
     updatedAt: Date
 
-    @OneToOne(() => Room, {nullable: true, default: null})
-    @JoinClolumn()
+    @OneToOne(() => Room, {nullable: true})
+    @JoinColumn()
     room: Room
+
+    @OneToMany(() => RoomManagement, (manager) => manager.guest)
+    @JoinColumn()
+    historic_guest: RoomManagement[]
+
+    @OneToMany(() => Booking, (booking) => booking.guest)
+    @JoinColumn()
+    historic_booking: Booking[]
 }

@@ -3,8 +3,13 @@ import {
     Column,
     PrimaryGeneratedColumn,
     CreateDateColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    OneToMany,
+    ManyToOne,
+    JoinColumn
 } from 'typeorm'
+import { Guest } from './guest.entity'
+import { Room } from './room.entity'
 
 @Entity('room_management')
 export class RoomManagement {
@@ -25,4 +30,12 @@ export class RoomManagement {
 
     @UpdateDateColumn({name: 'updated_at'})
     updatedAt: Date
+
+    @ManyToOne(() => Guest, (guest) => guest.historic_guest)
+    @JoinColumn()
+    guest: Guest
+
+    @ManyToOne(() => Room, (room) => room.historic_room)
+    @JoinColumn()
+    room: Room
 }
