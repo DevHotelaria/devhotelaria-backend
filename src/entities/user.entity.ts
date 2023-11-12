@@ -16,6 +16,9 @@ export class User{
     @Column()
     type_user: string
 
+    @Column({default: false})
+    is_connected: boolean
+
     @Exclude()
     @Column()
     password: string

@@ -25,6 +25,7 @@ const verifyAuthMiddleware = async (
         }
 
         req.user = {
+            id: decoded.id,
             type_user: decoded.type_user
         };
     });
