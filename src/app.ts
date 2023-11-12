@@ -7,6 +7,7 @@ import sessionRoutes from './routes/session.routes';
 import handleErrorMiddleware from './middlewares/handleError.middleware';
 import roomRoutes from './routes/room.routes';
 import guestRoutes from './routes/guest.routes';
+import managerRoutes from './routes/manager.routes';
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ app.use('/users', userRoutes);
 app.use('/session', sessionRoutes);
 app.use('/room', roomRoutes);
 app.use('/guest', guestRoutes);
+app.use('/manager', managerRoutes);
 
 app.use(handleErrorMiddleware);
 
