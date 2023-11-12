@@ -3,7 +3,7 @@ import { Room } from "../../entities/room.entity";
 import { AppError } from "../../errors/appError";
 import { IRoomUpdate } from "../../interfaces/room.interface";
 
-const updateRoomService = async ({numberRoom, status}: IRoomUpdate, id: string) =>{
+const updateRoomService = async ({numberRoom, status, description}: IRoomUpdate, id: string) =>{
     const roomRepository = AppDataSource.getRepository(Room);
 
     const findRoom = await roomRepository.findOneBy({
@@ -38,7 +38,8 @@ const updateRoomService = async ({numberRoom, status}: IRoomUpdate, id: string) 
 
     await roomRepository.update(id, {
         numberRoom: numberRoom ? numberRoom : findRoom.numberRoom,
-        status: status ? status : findRoom.status
+        status: status ? status : findRoom.status,
+        description: description ? description : findRoom.description
     });
 
     const roomUpdated = await roomRepository.findOneBy({

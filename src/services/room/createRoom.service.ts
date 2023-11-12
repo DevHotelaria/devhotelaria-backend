@@ -1,8 +1,9 @@
 import AppDataSource from "../../data-source"
 import { Room } from "../../entities/room.entity"
 import { AppError } from "../../errors/appError";
+import { IRoomRequest } from "../../interfaces/room.interface";
 
-const createRoomService = async (numberRoom: string) => {
+const createRoomService = async ({numberRoom, description}: IRoomRequest) => {
     const roomRepository = AppDataSource.getRepository(Room);
 
     const roomAlreadyExists = await roomRepository.findOneBy({
@@ -15,6 +16,7 @@ const createRoomService = async (numberRoom: string) => {
     const room = roomRepository.create({
         numberRoom: numberRoom,
         status: 'disponível',
+        description
     })
 
     await roomRepository.save(room);
