@@ -4,9 +4,11 @@ import {
     PrimaryGeneratedColumn,
     OneToMany,
     JoinColumn,
+    OneToOne,
 } from 'typeorm'
 import { RoomManagement } from './roomManagement.entity'
 import { Booking } from './booking.entity'
+import { Guest } from './guest.entity'
 
 @Entity('room')
 export class Room {
@@ -18,6 +20,10 @@ export class Room {
 
     @Column()
     status: string
+
+    @OneToOne(() => Guest, (guest) => guest.room)
+    @JoinColumn()
+    ocupation_guest: Guest
 
     @OneToMany(() => RoomManagement, (manager) => manager.room)
     @JoinColumn()

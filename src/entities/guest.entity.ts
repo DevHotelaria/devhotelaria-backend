@@ -35,7 +35,7 @@ export class Guest {
     @UpdateDateColumn({name: 'updated_at'})
     updatedAt: Date
 
-    @OneToOne(() => Room, {nullable: true})
+    @OneToOne(() => Room, (room) => room.ocupation_guest, {nullable: true})
     @JoinColumn()
     room: Room
 

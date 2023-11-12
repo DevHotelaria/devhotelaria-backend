@@ -13,7 +13,7 @@ const createRoomService = async (numberRoom: string) => {
     }
 
     const room = roomRepository.create({
-        numberRoom,
+        numberRoom: numberRoom,
         status: 'disponível',
     })
 
