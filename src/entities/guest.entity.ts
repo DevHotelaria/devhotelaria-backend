@@ -20,6 +20,9 @@ export class Guest {
     @Column({length: 70})
     name: string
 
+    @Column({unique: true})
+    cpf: string
+
     @Column()
     phone_number: string
 
