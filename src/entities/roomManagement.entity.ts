@@ -19,7 +19,7 @@ export class RoomManagement {
     @Column()
     checkin: Date
 
-    @Column()
+    @Column({nullable: true})
     checkout: Date
 
     @Column()
