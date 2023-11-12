@@ -6,15 +6,15 @@ import {
     listUserController,
     deleteUserController
 } from '../controllers/user.controller';
-import verifyAuthMiddleware from '../middleware/verifyAuth.middleware';
-import verifyAdmin from '../middleware/verifyAdmin.middleware';
+import verifyAuthMiddleware from '../middlewares/verifyAuth.middleware';
+import verifyAdmin from '../middlewares/verifyAdmin.middleware';
 
 const userRoutes = Router();
 
-userRoutes.post('', verifyAuthMiddleware, verifyAdmin, createUserController);
-userRoutes.patch('/:id', verifyAuthMiddleware, verifyAdmin, updateUserController);
+userRoutes.post('', verifyAdmin, verifyAuthMiddleware, createUserController);
+userRoutes.patch('/:id', verifyAdmin, verifyAuthMiddleware,updateUserController);
 userRoutes.get('/profile', verifyAuthMiddleware, profileUserController);
-userRoutes.get('', verifyAuthMiddleware, verifyAdmin, listUserController);
-userRoutes.delete('/:id', verifyAuthMiddleware, verifyAdmin, deleteUserController);
+userRoutes.get('', verifyAdmin, verifyAuthMiddleware, listUserController);
+userRoutes.delete('/:id', verifyAdmin, verifyAuthMiddleware, deleteUserController);
 
 export default userRoutes;
