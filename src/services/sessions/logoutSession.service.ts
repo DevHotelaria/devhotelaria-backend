@@ -1,5 +1,6 @@
 import AppDataSource from '../../data-source';
 import { User } from '../../entities/user.entity';
+import { AppError } from '../../errors/appError';
 
 const logoutSessionService = async (id: string) => {
     const userRepository = AppDataSource.getRepository(User);

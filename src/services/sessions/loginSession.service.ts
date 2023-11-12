@@ -28,8 +28,12 @@ const loginSessionService = async ({name, password}: ILoginSession) => {
     }
 
     const token = jwt.sign({id: user.id, type_user: user.type_user}, process.env.SECRET_KEY as string, {
-        expriresIn: '24h'
+        expiresIn: '24h'
     });
+
+    await userRepository.update(user.id, {
+        is_connected: true
+    })
 
     return token;
 };

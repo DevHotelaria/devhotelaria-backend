@@ -11,10 +11,10 @@ import verifyAdmin from '../middlewares/verifyAdmin.middleware';
 
 const userRoutes = Router();
 
-userRoutes.post('', verifyAdmin, verifyAuthMiddleware, createUserController);
-userRoutes.patch('/:id', verifyAdmin, verifyAuthMiddleware,updateUserController);
+userRoutes.post('', verifyAuthMiddleware, verifyAdmin, createUserController);
+userRoutes.patch('/:id', verifyAuthMiddleware, verifyAdmin,updateUserController);
 userRoutes.get('/profile', verifyAuthMiddleware, profileUserController);
-userRoutes.get('', verifyAdmin, verifyAuthMiddleware, listUserController);
-userRoutes.delete('/:id', verifyAdmin, verifyAuthMiddleware, deleteUserController);
+userRoutes.get('', verifyAuthMiddleware, verifyAdmin, listUserController);
+userRoutes.delete('/:id', verifyAuthMiddleware, verifyAdmin, deleteUserController);
 
 export default userRoutes;

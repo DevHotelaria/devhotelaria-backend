@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import {
-    loginSessionService,
+    loginSessionController,
     logoutSessionController
 } from '../controllers/session.controller';
-import verifyAuthMiddleware from '../middleware/verifyAuth.middleware';
+import verifyAuthMiddleware from '../middlewares/verifyAuth.middleware';
 
 const sessionRoutes = Router();
 
-sessionRoutes.post('/login', loginSessionService);
+sessionRoutes.post('/login', loginSessionController);
 sessionRoutes.patch('/logout', verifyAuthMiddleware, logoutSessionController);
 
 export default sessionRoutes;
